@@ -1,0 +1,20 @@
+# Ativado com SPRING_PROFILES_ACTIVE=docker (ver docker-compose.yml).
+# Troca o H2 em memoria por PostgreSQL, para rodar em um ambiente
+# mais parecido com producao.
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/livraria_db
+    driver-class-name: org.postgresql.Driver
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+
+  h2:
+    console:
+      enabled: false
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
